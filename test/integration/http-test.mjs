@@ -12,6 +12,7 @@ const __dirname = path.dirname(__filename)
 const suffixAcl = '.acl'
 const suffixMeta = '.meta'
 const storageDescription = 'http://www.w3.org/ns/solid/terms#storageDescription'
+const storageDescriptionResource = 'https://localhost:8443/' + suffixMeta
 const server = setupSupertestServer({
   live: true,
   dataBrowserPath: 'default',
@@ -174,7 +175,7 @@ describe('HTTP APIs', function () {
     it('should have set storageDescription Link for resource',
       function (done) {
         server.options('/sampleContainer2/example1.ttl')
-          .expect(hasHeader(storageDescription, 'https://localhost/' + suffixMeta))
+          .expect(hasHeader(storageDescription, storageDescriptionResource))
           .end(done)
       })
 
@@ -215,7 +216,7 @@ describe('HTTP APIs', function () {
 
     it('should have set storageDescription Link for container', function (done) {
       server.options('/sampleContainer2/')
-        .expect(hasHeader(storageDescription, 'https://localhost/' + suffixMeta))
+        .expect(hasHeader(storageDescription, storageDescriptionResource))
         .end(done)
     })
   })
@@ -291,7 +292,7 @@ describe('HTTP APIs', function () {
       function (done) {
         server.get('/sampleContainer2/example1.ttl')
           .expect('content-type', /text\/turtle/)
-          .expect(hasHeader(storageDescription, 'https://localhost/' + suffixMeta))
+          .expect(hasHeader(storageDescription, storageDescriptionResource))
           .end(done)
       })
     it('should have set Link as Container/BasicContainer', function (done) {
@@ -415,7 +416,7 @@ describe('HTTP APIs', function () {
     it('should have set storageDescription Link for container',
       function (done) {
         server.get('/sampleContainer2/')
-          .expect(hasHeader(storageDescription, 'https://localhost/' + suffixMeta))
+          .expect(hasHeader(storageDescription, storageDescriptionResource))
           .expect('content-type', /text\/turtle/)
           .end(done)
       })
@@ -548,7 +549,7 @@ describe('HTTP APIs', function () {
     it('should have set storageDescription Link for resource',
       function (done) {
         server.head('/sampleContainer2/example1.ttl')
-          .expect(hasHeader(storageDescription, 'https://localhost/' + suffixMeta))
+          .expect(hasHeader(storageDescription, storageDescriptionResource))
           .end(done)
       })
     it('should have set Content-Type as text/turtle for Container',
@@ -574,7 +575,7 @@ describe('HTTP APIs', function () {
     it('should have set storageDescription Link for container',
       function (done) {
         server.head('/sampleContainer2/')
-          .expect(hasHeader(storageDescription, 'https://localhost/' + suffixMeta))
+          .expect(hasHeader(storageDescription, storageDescriptionResource))
           .end(done)
       })
   })
