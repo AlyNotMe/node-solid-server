@@ -178,7 +178,7 @@ function requestAdapter (arg1, arg2, arg3) {
   return doFetch(method, url, options, cb)
 }
 
-;['GET', 'POST', 'PUT', 'PATCH', 'HEAD', 'DELETE'].forEach(m => {
+['GET', 'POST', 'PUT', 'PATCH', 'HEAD', 'DELETE'].forEach(m => {
   const name = m.toLowerCase()
   requestAdapter[name] = (options, cb) => doFetch(m, options.url, options, cb)
 })
