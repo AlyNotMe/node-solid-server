@@ -285,8 +285,8 @@ describe('HTTP APIs', function () {
         .set('Accept', 'text/html')
         .expect('content-type', /text\/html/)
         .expect(function (res) {
-          if (res.text.indexOf('TabulatorOutline') < 0) {
-            throw new Error('did not load the Tabulator skin by default')
+          if (res.text.indexOf('runDataBrowser') < 0) {
+            throw new Error('did not load the data browser (mashlib) skin by default')
           }
         })
         .expect(200, done) // Can't check for 303 because of internal redirects
@@ -304,7 +304,7 @@ describe('HTTP APIs', function () {
         .expect('content-type', /text\/html/)
         .expect(200)
         .expect((res) => {
-          if (res.text.includes('TabulatorOutline')) {
+          if (res.text.includes('runDataBrowser')) {
             throw new Error('Loaded data browser though resource has an .html extension')
           }
         })
@@ -317,8 +317,8 @@ describe('HTTP APIs', function () {
         .expect('content-type', /text\/html/)
         .expect(200)
         .expect((res) => {
-          if (res.text.includes('TabulatorOutline')) {
-            throw new Error('Loaded data browser though resource has an .html extension')
+          if (res.text.includes('runDataBrowser')) {
+            throw new Error('Loaded data browser though directory has an index file')
           }
         })
         .end(done)
